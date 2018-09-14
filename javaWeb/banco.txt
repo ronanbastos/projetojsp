@@ -1,0 +1,26 @@
+CREATE DATABASE exerciciosjava;
+use exerciciosjava;
+
+CREATE TABLE aluno(
+    id int (11),
+    cpf varchar (255),
+    nome varchar (255),
+    av1 double,
+    av2 double,
+    av3 double,
+    media double,
+    situacao varchar (255)
+
+);
+
+CREATE DATABASE empresa(
+
+id int (11),    
+nome varchar (255),
+cpf varchar (255),
+salario double,
+funcao varchar(255),
+indentidade varchar (255)
+
+);
+

@@ -1,0 +1,813 @@
+<h3> Cadastro de Clientes</h3>
+
+<form id="cadastro" method="post" action="cadastrarCliente.html">
+   
+	    Nome do Cliente:
+	    <input type="text" name="nome" id="nome"><br>
+	    Email:
+	    <input type="text" name="email"  id="email"><br>
+	    Telefone:
+	    <input type="text" name="telefone"  id="telefone"><br>
+	    Login:
+	    <input type="text" name="login"  id="login"><br>
+	    Senha:
+	    <input type="password" name="senha"  id="senha"><br>
+    	CPF:
+    	<input type="text" id="cpf" name="cpf"  id="cpf"><br>
+	<input type="submit" value="Cadastrar Cliente" />
+		
+</form> 
+
+buscarcliente.jsp
+<h3>Buscar Cliente</h3>
+
+<form action="consulcli.html" method="post">
+	
+		CPF: <input type="text" name="cpf"
+			placeholder="Digite o CPF do Cliente">
+	
+	<input type="submit" value="Buscar Cliente" >
+
+</form>
+
+clienteconsultado.jsp
+
+<h3>Cliente consultado</h3>
+<c:if test="${fn:length(listaCliente)>0 }">
+	<table>
+		<tr>
+			<th>ID do Cliente</th>
+			<th>Nome do Cliente</th>
+			<th>E-mail</th>
+			<th>Telefone</th>
+			<th>Login</th>
+			<th>Senha</th>
+			<th>CPF do Cliente</th>
+			<th>Ações</th>
+		</tr>
+		<c:forEach var="cliente" items="${listaCliente}">
+			<td>${cliente.idCliente}</td>
+			<td>${cliente.nome}</td>
+			<td>${cliente.email}</td>
+			<td>${cliente.telefone}</td>
+			<td>${cliente.login}</td>
+			<td>${cliente.senha}</td>
+			<td>${cliente.cpf}</td>
+			<td><a href="editarcliente.html?cpf=${cliente.cpf}">Alterar</a></td>
+				<td><a href="excluircliente.html?cpf=${cliente.cpf}">Excluir</a></td>
+		</c:forEach>	
+	</table>	
+</c:if>
+
+editarcliente.jsp
+
+<h3 >Página de Edição de Informações</h3>
+Olá ${cliente.nome}
+<form method="post" action="confirmarcliente.html">
+	
+		Nome do Cliente: <input type="text" name="nome" value="${cliente.nome}" id="nome"/><br>
+			
+		E-mail: <input type="text" name="email" value="${cliente.email}" id="email"/><br>
+		
+		Telefone:<input type="text" name="telefone"  value="${cliente.telefone}" id="telefone"><br>
+			
+		Login: <input type="text" name="login" value="${cliente.login}"  id="login"/><br>
+			
+		Senha: <input type="text" name="senha" value="${cliente.senha}" id="senha"/><br>
+			
+		CPF: <input type="text" id="cpf" name="cpf" value="${cliente.cpf}" id="cpf"/><br>
+		
+		ID:<input type="text" name="idcliente" value="${cliente.idCliente}"  readonly> <br>
+	<input	type="submit" value="Editar Cliente"/>
+
+</form>
+
+
+adicionarproduto.jsp
+
+<form id="cadastro" method="post" action="cadastrarproduto.html">
+   
+	    Nome do Produto:
+	    <input type="text" name="nome" id="nome"><br>
+	    Valor:
+	    <input type="text" name="valor"  id="valor"><br>
+	    Quantidade:
+	    <input type="number" name="quantidade"  id="quantidade"><br>
+	    Fornecedor
+	    <input type="text" name="fornecedor"  id="fornecedor"><br>
+	    
+	<input type="submit" value="Cadastrar Produto" >
+		
+</form> 
+
+
+buscar produto
+
+<h3>Buscar Produto</h3>
+
+<form action="produtoconsultado.html" method="post">
+	
+		Nome do Produto: <input type="text" name="nome"		placeholder="Digite o nome do Produto">
+	
+	<input type="submit" value="Buscar Produto" >
+
+</form>
+
+produtoconsultado.jsp
+
+<h3>Produto Consultado</h3>
+<c:if test="${fn:length(listaproduto) > 0}">
+
+	<table class="table table-bordered">
+		<tr align="center">
+			<th>ID  DO PRODUTO</th>
+			<th>NOME PRODUTO</th>
+			<th>VALOR</th>
+			<th>QUANTIDADE</th>
+			<th>FORNECEDOR</th>
+			<th colspan="2">AÇÕES</th>
+		</tr>
+		
+		<c:forEach var="produto" items="${listaproduto}">
+			<tr>
+				<td id="idproduto">${produto.idCliente}</td>
+				<td id="idnome">${produto.valor}</td>
+				<td id="idquantidade">${produto.quantidade}</td>
+				<td id="idvalor">${produto.valor}</td>
+				<td id="idfornecedor">${produto.fornecedor}</td>
+				<td><a href="editarproduto.html?idproduto=${produto.idproduto}">Alterar</a></td>
+				<td><a href="excluirproduto.html?idproduto=${produto.idproduto}">Excluir</a></td>
+			</tr>
+		</c:forEach>
+		</table>
+</c:if>
+editarproduto.jsp
+
+<h3 >Página de Edição de Informações</h3>
+
+<form method="post" action="confirmarproduto.html">
+	
+		Nome do Produto: <input type="text" name="nome" value="${produto.nome}" id="nome"/><br>
+			
+		Valor do Produto: <input type="text" name="valor" value="${produto.valor}" id="valor"/><br>
+		
+		Quantidade no Estoque:<input type="text" name="quantidade"  value="${produto.quantidade}" id="quantidade"><br>
+			
+		Fornecedor: <input type="text" name="fornecedor" value="${produto.fornecedor}"  id="fornecedor"/><br>
+			
+		ID do Produto:<input type="text" name="idproduto" value="${produto.idproduto}"  id="idproduto" readonly> <br>
+	<input	type="submit" value="Editar Produto"/>
+
+</form>
+
+
+menu.jsp
+
+					<ul>
+					<li><a href="buscarcliente.jsp">Buscar Cliente</a></li>		
+					<li><a href="adicionaCliente.jsp">Cadastrar</a></li>	
+					</ul>
+
+login.jsp
+
+<h3>Acessar Sistema</h3>
+
+	<form method="post" action="logarcliente.html">
+		
+			Login:
+			<input type="text" name="login" placeholder="Login">
+		
+			Senha:
+			<input type="password" name="senha" placeholder="Senha">
+			
+			Tipo de Usuário:
+			<select name="nivel">
+			<option value="">Administrador</option>
+			<option value="">Cliente</option>				
+			</select>
+		
+		<input type="submit" value="Logar">
+		<a href="adicionaCliente.jsp">Cadastrar (Caso não tenha cadastro)</a>
+	</form>
+
+
+sessaocliente.jsp
+
+					<ul>
+					
+					<% if(request.getSession().getAttribute("login") != null){%> 
+						<li><a href="sairCliente.html">Sair</a></li>	
+							<li>Seja-Bem vindo, ${nome}</li>
+							<li><a href="buscarcliente.jsp">Buscar Cliente</a></li>		
+						<% } %>	
+						</ul>
+
+
+sessaoadmin.jsp
+
+				<ul>
+					<li><a href="index.jsp">Home</a></li>
+					<li><a href="adicionarproduto.jsp">Cadastrar Produto</a></li>
+					<li><a href="buscarproduto.jsp">Atualizar Produto</a></li>
+					<li><a href="buscarproduto.jsp">Excluir Produto</a></li>
+					<li><a href="buscarproduto.jsp">Buscar Produto</a></li>							
+					<%if(request.getSession().getAttribute("login") != null){%>
+						<li><a href="sairAdmin.html">Sair</a></li>	
+							<li>Seja-Bem vindo, ${login}</li>
+												
+						<%}%>		                                                                                               
+				</ul>
+
+index.jsp
+
+Aula de Java Web
+Aula de Java Web
+<ul>		
+	<li><a href="menu.jsp">Menu</a></li>		
+					
+</ul>
+
+inserir no ControleCliente Servlet
+
+@WebServlet(name="/ControleCliente",urlPatterns= {"/cadastrarcliente.html",
+		"/buscarcliente.html","/clienteconsultado.html","/editarcliente.html",
+		"/confirmarcliente.html","/excluircliente.html","/logarcliente.html"})
+
+método executarcliente
+
+protected void executarcliente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		try {
+			String url = request.getServletPath();
+
+			if (url.equalsIgnoreCase("/cadastrarcliente.html")) {
+				cadastrar(request, response);
+			} else if (url.equalsIgnoreCase("/editarcliente.html")) {
+				editar(request, response);
+			} else if (url.equalsIgnoreCase("/buscarcliente.html")) {
+				buscar(request, response);
+			} else if (url.equalsIgnoreCase("/clienteconsut.html")) {
+				buscar(request, response);
+			} else if (url.equalsIgnoreCase("/confirmarcliente.html")) {
+				confirmar(request, response);
+			}else if (url.equalsIgnoreCase("/excluircliente.html")) {
+				excluir(request, response);
+			}else if (url.equalsIgnoreCase("/logarcliente.html")) {
+				logar(request, response);
+			}else {
+			throw new Exception("URL Inválida!!!");
+		}
+	} catch (Exception e) {
+		response.sendRedirect("index.jsp");
+		e.printStackTrace();
+	}
+	
+	}
+
+//método cadastrar
+protected void cadastrar(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// Pegando os parâmetros passados pelo formulário
+		String nome = request.getParameter("nome");
+		String email = request.getParameter("email");
+		String telefone = request.getParameter("telefone");
+		String login = request.getParameter("login");
+		String senha = request.getParameter("senha");
+		String cpf = request.getParameter("cpf");
+
+		// Instanciando um Objeto do tipo Cliente
+		Cliente cliente = new Cliente();
+		cliente.setNome(nome);
+		cliente.setEmail(email);
+		cliente.setTelefone(telefone);
+		cliente.setLogin(login);
+		cliente.setSenha(senha);
+		cliente.setCpf(cpf);// Instanciando um Objeto do tipo ClienteDao
+		
+		try {
+			ClienteDao dao = new ClienteDao();
+			dao.adicionar(cliente);
+			request.getRequestDispatcher("adicionarcliente.jsp").forward(request, response);
+			
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		} 
+	}
+	
+	//método buscar cliente
+
+public void busca(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+		try {
+			String cpf = request.getParameter("cpf");
+			ClienteDao pd = new ClienteDao();
+			//Cliente cliente=new Cliente();
+
+			List<Cliente> lista = pd.listarCliente(cpf);
+			
+			request.setAttribute("cpf", cpf); //Aqui é variável. Isso
+			request.setAttribute("listaCliente", lista);
+			request.getRequestDispatcher("consultarcliente.jsp").forward(request, response);
+			//Vai passar os dados da lista para o editaCliente.jsp ok
+			//Peraí...
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+//método editar cliente
+
+public void editar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		try {
+			// Capturando o Id do Cliente vindo do formulário
+			
+			String cpf = request.getParameter("cpf");
+			Cliente cliente = new ClienteDao().buscarCliente(cpf);		
+				request.setAttribute("cliente", cliente);
+				//request.getSession().setAttribute("cliente", cliente);
+				request.getRequestDispatcher("editarcliente.jsp").forward(request, response);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+			request.getRequestDispatcher("buscarcliente.jsp").forward(request, response);
+		}
+	}
+
+// método confirmar cliente
+
+public void confirmar(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		try {
+
+			// Pegando os parâmetros passados pelo formulário
+			String nome = request.getParameter("nome");
+			String email = request.getParameter("email");
+			String telefone = request.getParameter("telefone");
+			String login = request.getParameter("login");
+			String senha = request.getParameter("senha");
+			String cpf = request.getParameter("cpf");
+			//long idCliente = Long.parseLong(request.getParameter("idcliente"));
+			
+
+			// Instanciando um Objeto do tipo Cliente
+			Cliente cliente = new Cliente();
+			cliente.setNome(nome);
+			cliente.setEmail(email);
+			cliente.setTelefone(telefone);
+			cliente.setLogin(login);
+			cliente.setSenha(senha);
+			cliente.setCpf(cpf);// Instanciando um Objeto do tipo ClienteDao
+			//cliente.setIdCliente(new Integer(idCliente));
+
+			// Gravando os dados no Banco de Dados
+
+			ClienteDao pd = new ClienteDao();
+			pd.editar(cliente);
+			request.getSession().setAttribute("cliente", cliente);
+			//HttpSession sessao=request.getSession();
+			//sessao.setAttribute("nome",nome);
+			
+			request.getRequestDispatcher("editarcliente.jsp").forward(request, response);
+			
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		} finally {
+			request.getRequestDispatcher("buscarcliente.jsp").forward(request, response);
+		}
+
+	}
+// excluir cliente
+
+protected void excluir(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// Pegando os parâmetros passados pelo formulário
+		String cpf = request.getParameter("cpf");
+
+		// Instanciando um Objeto do tipo Cliente
+		Cliente cliente = new Cliente();
+		cliente.setCpf(cpf);
+
+		// Instanciando um Objeto do tipo ClienteDao
+		try {
+			ClienteDao dao = new ClienteDao();
+			dao.excluir(cliente);
+			
+			request.getRequestDispatcher("buscarcliente.jsp").forward(request, response);
+
+
+		} catch (Exception e) {
+			
+			request.getRequestDispatcher("index.jsp").forward(request, response);
+
+		} 
+	}
+
+// método logar cliente
+
+protected void logar(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException, ClassNotFoundException, SQLException {
+		String login = request.getParameter("login");
+		String senha = request.getParameter("senha");
+		int nivel=Integer.parseInt(request.getParameter("nivel"));
+		//String admin = "admin";
+		Cliente cliente = new ClienteDao().login(login, senha, nivel);
+		Admin admin = new AdminDao().consultarLoginSenha(login, senha,nivel);
+
+		if (admin != null) {
+
+			request.getSession().setAttribute("admin", admin);
+			request.getSession().setAttribute("login", login);
+			request.getRequestDispatcher("sessaoadmin.jsp").forward(request, response);
+		} else {
+
+			try {
+
+				if (cliente != null) {					
+					
+					request.getSession().setAttribute("cliente", cliente);
+					request.getSession().setAttribute("login", login);					
+					response.sendRedirect("sessaocliente.jsp");
+				} else {
+					
+					request.getRequestDispatcher("login.jsp").forward(request, response);
+				}
+			}
+
+			catch (Exception e) {
+				e.printStackTrace();
+				//request.setAttribute("msg", "Erro" + e.getMessage());
+				request.getRequestDispatcher("index.jsp").forward(request, response);
+			}
+		}
+	}
+
+
+pacote entidade
+
+Classe Cliente
+
+	private int idcliente;
+	private String nome;
+	private String email;
+	private String telefone;
+	private String login;
+	private String senha;
+	private String cpf; 
+
+	public Cliente() {
+
+	}
+	
+	public Cliente(String login, String senha) {
+		this.login = login;
+		this.senha = senha;
+	}
+
+	public Cliente(int idcliente, String nome, String email, String telefone,String login, String senha, String cpf) {
+		super();
+		this.idcliente = idcliente;
+		this.nome = nome;
+		this.email = email;
+		this.telefone = telefone;
+		this.login = login;
+		this.senha = senha;
+		this.cpf = cpf;
+	}
+
+	
+
+	public int getIdcliente() {
+		return idcliente;
+	}
+
+	public void setIdcliente(int idcliente) {
+		this.idcliente = idcliente;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+
+ClienteDao
+
+
+public void adicionar(Cliente cliente) throws ClassNotFoundException {
+		String sql = "insert into cliente " + "(nome,email,telefone,login,senha,cpf)" + " values (?,?,?,?,?,?)";
+		String sql1="insert into admin" +"(nome,login,senha)" + " values (?,?,?)";
+
+		try {
+			// prepared statement para inserção
+			open();
+			stmt = con.prepareStatement(sql);
+			
+			// seta os valores
+			stmt.setString(1, cliente.getNome());
+			stmt.setString(2, cliente.getEmail());
+			stmt.setString(3, cliente.getTelefone());
+			stmt.setString(4, cliente.getLogin());
+			stmt.setString(5, cliente.getSenha());
+			stmt.setString(6, cliente.getCpf());
+			
+			stmt2 = con.prepareStatement(sql1);
+			stmt2.setString(1, cliente.getNome());
+			stmt2.setString(2, cliente.getLogin());
+			stmt2.setString(3, cliente.getSenha());
+			
+
+			// executa
+			stmt.execute();
+			stmt2.execute();
+			close();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	public List<Cliente> listarCliente(String cpf) throws ClassNotFoundException, SQLException {
+
+		open();
+
+		stmt = this.con.prepareStatement("select * from cliente where cpf = ?");
+		stmt.setString(1, cpf);
+
+		rs = stmt.executeQuery();
+		List<Cliente> clientes = new ArrayList<Cliente>();
+
+		while (rs.next()) {			// criando o objeto Cliente
+			Cliente cliente = new Cliente();
+			cliente.setIdcliente(rs.getInt("idcliente"));
+			cliente.setNome(rs.getString("nome"));
+			cliente.setTelefone(rs.getString("telefone"));
+			cliente.setEmail(rs.getString("email"));
+			cliente.setLogin(rs.getString("login"));
+			cliente.setSenha(rs.getString("senha"));
+			cliente.setCpf(rs.getString("cpf"));
+
+			// adicionando o objeto à lista
+			clientes.add(cliente);
+		}
+		
+		return clientes;
+
+	}
+	
+	//buscar cliente por CPF
+	
+	public Cliente buscarCliente(String cpf) throws SQLException, ClassNotFoundException {
+
+		open();
+		String sql = "SELECT * FROM cliente WHERE cpf  = ?";
+		stmt = con.prepareStatement(sql);
+		stmt.setString(1, cpf);
+		Cliente cliente = null;
+		rs = stmt.executeQuery();
+
+		if (rs.next()) {
+			cliente = new Cliente(rs.getInt("idciente"), rs.getString("nome"), rs.getString("email"),
+					rs.getString("telefone"),rs.getString("login"), rs.getString("senha"), rs.getString("cpf"));
+		}
+		//close();
+		return cliente;
+
+	}
+	public void editar(Cliente cliente) throws ClassNotFoundException {
+		String sql = "update cliente set nome=?, email=?, telefone=?, login=?, senha=? where cpf=?";
+
+		try {
+			open();
+			stmt = con.prepareStatement(sql);
+			stmt.setString(1, cliente.getNome());
+			stmt.setString(2, cliente.getEmail());
+			stmt.setString(3, cliente.getTelefone());
+			stmt.setString(4, cliente.getLogin());
+			stmt.setString(5, cliente.getSenha());
+			stmt.setString(6, cliente.getCpf());
+			//stmt.setLong(6, cliente.getIdcliente());
+
+			stmt.execute();
+			close();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	public void excluir(Cliente cliente) throws ClassNotFoundException {
+
+		try {
+			open();
+			stmt = con.prepareStatement("delete from cliente where cpf=?");
+			stmt.setString(1, cliente.getCpf());
+			stmt.execute();
+			close();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	public Cliente login(String login, String senha, int nivel) throws SQLException, ClassNotFoundException {
+		open();
+		String sql = "SELECT login, senha FROM cliente WHERE login = ? AND senha = ?";
+		stmt = con.prepareStatement(sql);
+
+		stmt.setString(1, login);
+		stmt.setString(2, senha);
+
+		rs = stmt.executeQuery();
+		Cliente cliente = null;
+
+		if (rs.next()) {
+			cliente = new Cliente(rs.getString(1), rs.getString(2));
+		}
+		close();
+		return cliente;
+	}
+
+Classe DAO
+
+protected Connection con;
+	protected PreparedStatement stmt,stmt2;
+	protected ResultSet rs;
+	
+	String URL   = "jdbc:mysql://localhost:3306/lojavirtual";
+	String USER  = "root";
+	String PASS  = "";
+	
+	protected void open() {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			con = DriverManager.getConnection(URL, USER, PASS);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	protected void close() {
+		try {
+			if(con != null) {
+				con.close();
+			}
+			if(stmt != null) {
+				stmt.close();
+			}
+			if(rs != null) {
+				rs.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+Admin
+	
+	private int idadmin;
+	private String nome;
+	private String login;
+	private String senha;
+	private int nivel;
+	
+	public Admin() {
+		
+	}
+
+	public Admin(String login, String senha,int nivel) {
+		super();		
+		this.login = login;
+		this.senha = senha;
+		this.nivel = nivel;
+	}
+
+	public int getIdadmin() {
+		return idadmin;
+	}
+
+	public void setIdadmin(int idadmin) {
+		this.idadmin = idadmin;
+	}
+
+	/*
+	@Override
+	public String toString() {
+		return "Admin [idAdmin=" + idAdmin + ", nome=" + nome + ", login=" + login + ", senha=" + senha + "]";
+	}*/
+
+	
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+	
+	public int getNivel() {
+		return nivel;
+	}
+
+	public void setNivel(int nivel) {
+		this.nivel = nivel;
+	}
+
+
+
+Admin Dao
+
+public Admin consultarLoginSenha(String login, String senha,int nivel) throws SQLException, ClassNotFoundException{
+		open();
+		String sql = "select * from admin where login = ? and senha = ? and nivel=?";
+		stmt = con.prepareStatement(sql);
+		stmt.setString(1, login);
+		stmt.setString(2, senha);
+		stmt.setInt(3, nivel);
+		
+		rs = stmt.executeQuery();
+		
+		Admin admin = null;
+		
+		if(rs.next()){
+			admin = new Admin(rs.getString("login"), 
+							  rs.getString("senha"),
+							  rs.getInt("nivel"));			
+		}
+		close();
+		return admin;
+	}
+
+
+imports do controle cliente
+
+import br.com.aula15.dao.ClienteDao;
+import br.com.aula15.entidade.Cliente;
+import br.com.aula15.dao.AdminDao;
+import br.com.aula15.entidade.Admin;
+import java.util.*;
+
+banco de dados
+
+CREATE TABLE admin(
+idadmin int AUTO_INCREMENT PRIMARY KEY,
+    nome varchar(100),
+    login varchar(100),
+    senha varchar(20)
+)

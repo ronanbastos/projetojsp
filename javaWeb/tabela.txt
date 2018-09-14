@@ -1,0 +1,14 @@
+controle saida 
+saida
+atraso
+status
+total
+
+
+
+controle entrada
+placa
+cpf
+nome 
+entrada
+estadia
